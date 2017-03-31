@@ -6,12 +6,13 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 lookAt;
     private float angle;
-    private GameObject bullet;
+    private GunController gun;
 
     public float speed;
 	
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        gun = GetComponentInChildren<GunController>();
 	}
 	
 	void Update () {
@@ -51,9 +52,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            bullet = BulletBuilder.instance.Build("Pistol");
-            bullet.transform.position = transform.position;
-            bullet.transform.eulerAngles = transform.eulerAngles;
+            gun.FireGun("Pistol");
+            
         }
     }
 }

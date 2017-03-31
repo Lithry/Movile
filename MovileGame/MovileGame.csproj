@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scrips\Builder\BulletBuilder.cs" />
     <Compile Include="Assets\Scrips\Bullets\Pistol.cs" />
     <Compile Include="Assets\Scrips\Factory\BulletFactory.cs" />
+    <Compile Include="Assets\Scrips\Player\GunController.cs" />
     <Compile Include="Assets\Scrips\Player\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>

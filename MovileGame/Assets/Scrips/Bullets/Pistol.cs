@@ -6,7 +6,7 @@ public class Pistol : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("End", 2);
+        Invoke("End", 1);
     }
     void Update () {
         transform.Translate(Vector3.forward * Time.deltaTime);
@@ -14,6 +14,6 @@ public class Pistol : MonoBehaviour {
 
     void End()
     {
-        BulletFactory.instance.Destroy(gameObject);
+        BulletFactory.instance.Recycle(gameObject);
     }
 }

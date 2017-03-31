@@ -23,8 +23,8 @@ public class BulletFactory : MonoBehaviour {
         }
     }
 
-    public void Destroy(GameObject obj)
+    public void Recycle(GameObject obj)
     {
-        Destroy(obj.gameObject);
+        Destroy(obj);
     }
 }

@@ -11,13 +11,15 @@ public class BulletBuilder : MonoBehaviour {
         instance = this;
 	}
 	
-    public GameObject Build(string type)
+    public GameObject Build(string type, Vector3 pPos, Vector3 pRot)
     {
         switch (type)
         {
             case "Pistol":
                 obj = BulletFactory.instance.Create(type);
                 obj.AddComponent<Pistol>();
+                obj.transform.position = pPos;
+                obj.transform.eulerAngles = pRot;
                 return obj;
             default:
                 return null;
