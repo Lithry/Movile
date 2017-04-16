@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    //private ControlsManager controls;
     private Rigidbody rb;
     private Vector3 lookAt;
     private float angle;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
 	
 	void Start () {
+        //controls = GameObject.Find("ControlsManager").GetComponent<ControlsManager>();
         rb = GetComponent<Rigidbody>();
         gun = GetComponentInChildren<GunController>();
 	}
@@ -22,22 +24,22 @@ public class PlayerController : MonoBehaviour {
 
     void Movement()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (ControlsManager.instance.UpBottom())
         {
             rb.AddForce(Vector3.forward * speed);
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (ControlsManager.instance.LeftBottom())
         {
             rb.AddForce(-Vector3.right * speed);
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (ControlsManager.instance.DownBottom())
         {
             rb.AddForce(-Vector3.forward * speed);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (ControlsManager.instance.RightBottom())
         {
             rb.AddForce(Vector3.right * speed);
         }
@@ -50,8 +52,7 @@ public class PlayerController : MonoBehaviour {
 
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (ControlsManager.instance.FireBottom()) {
             gun.FireGun("Pistol");
             
         }

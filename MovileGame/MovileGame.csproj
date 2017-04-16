@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Factory\BulletFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\PlayerFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\ZombieFactory.cs" />
+    <Compile Include="Assets\Scripts\Manager\ControlsManager.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Manager\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Manager\ZombieManager.cs" />
