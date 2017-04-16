@@ -17,7 +17,7 @@ public class ZombieFactory : MonoBehaviour {
         switch (type)
         {
             case "Zombie":
-                GameObject zombie = Instantiate(zombiePrefab, new Vector3(0, 0.3f, 0), new Quaternion(0, 0, 0, 1));
+                GameObject zombie = Instantiate(zombiePrefab, new Vector3(0, 0.2f, 0), new Quaternion(0, 0, 0, 1));
                 return zombie;
             default:
                 return null;

@@ -22,7 +22,7 @@ public class ZombieManager : MonoBehaviour {
 
         if (respawn > respawnDelay)
         {
-            ZombieBuilder.instance.Build("Zombie", new Vector3(0, 0.3f, 0), new Vector3(0, 0, 0));
+            ZombieBuilder.instance.Build("Zombie", new Vector3(0, 0.2f, 0), new Vector3(0, 0, 0));
             respawn = 0;
             respawnDelay = Random.Range(0.5f, 4.0f);
         }
