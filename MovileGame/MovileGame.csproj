@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Builder\PlayerBuilder.cs" />
     <Compile Include="Assets\Scripts\Builder\ZombieBuilder.cs" />
     <Compile Include="Assets\Scripts\Bullets\Pistol.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Zombie.cs" />
     <Compile Include="Assets\Scripts\Factory\BulletFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\PlayerFactory.cs" />
