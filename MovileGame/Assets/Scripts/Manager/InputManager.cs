@@ -6,23 +6,18 @@ public class InputManager : MonoBehaviour {
     static public InputManager instance = null;
     private IInput input;
 
-    private bool fire;
-
     void Awake()
     {
         instance = this;
 
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+#if   UNITY_EDITOR
+        input = new InputTouchscreen();
+#elif UNITY_STANDALONE_WIN
         input = new InputKeyboard();
 #elif UNITY_ANDROID
-        input = new InputAndroid();
+        input = new InputTouchscreen();
 #endif
 
-    }
-
-    void Update()
-    {
-        fire = Input.GetButtonDown("Fire1") ? true : false;
     }
 
     public bool Fire()

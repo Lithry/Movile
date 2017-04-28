@@ -14,7 +14,7 @@ public class Zombie : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(new Vector3(ZombieManager.instance.PlayerPos().x, transform.position.y, ZombieManager.instance.PlayerPos().z));
+        transform.LookAt(new Vector3(PlayerManager.instance.PlayerPos().x, transform.position.y, PlayerManager.instance.PlayerPos().z));
         //transform.LookAt(ZombieManager.instance.PlayerPos());
 
         rb.velocity = transform.forward * speed;

@@ -21,7 +21,5 @@ public class PlayerController : MonoBehaviour {
 
         if (InputManager.instance.Fire())
             gun.FireGun("Pistol");
-
-        Debug.Log(rb.velocity);
     }
 }
