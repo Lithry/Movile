@@ -22,4 +22,12 @@ public class PlayerController : MonoBehaviour {
         if (InputManager.instance.Fire())
             gun.FireGun("Pistol");
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.transform.tag == "Enemy")
+        {
+            PlayerManager.instance.PlayerDied();
+            PlayerFactory.instance.Recycle(gameObject);
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class PlayerBuilder : MonoBehaviour {
             case "Player":
                 obj = PlayerFactory.instance.Create(type);
                 PlayerController a = obj.AddComponent<PlayerController>();
-                a.speed = 25;
+                a.speed = 35;
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 return obj;

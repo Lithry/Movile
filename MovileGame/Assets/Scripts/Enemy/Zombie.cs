@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour {
     private Rigidbody rb;
-
+    private Vector3 moveTo;
     private float speed;
+    private int giveScore = 0;
 
-    // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        transform.LookAt(new Vector3(PlayerManager.instance.PlayerPos().x, transform.position.y, PlayerManager.instance.PlayerPos().z));
-        //transform.LookAt(ZombieManager.instance.PlayerPos());
+        moveTo.x = PlayerManager.instance.PlayerPos().x;
+        moveTo.y = transform.position.y;
+        moveTo.z = PlayerManager.instance.PlayerPos().z;
+        transform.LookAt(moveTo);
 
         rb.velocity = transform.forward * speed;
 	}
@@ -24,10 +25,16 @@ public class Zombie : MonoBehaviour {
         speed = spd;
     }
 
+    public void GiveScore(int give)
+    {
+        giveScore = give;
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.tag == "Bullet") {
-            ZombieFactory.instance.Recycle(gameObject);
+            ScoreManager.instance.AddScore(giveScore);
+            ZombieManager.instance.Recycle(gameObject);
         }
     }
 }

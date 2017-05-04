@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour {
         instance = this;
 
 #if   UNITY_EDITOR
-        input = new InputTouchscreen();
+        input = new InputKeyboard();
 #elif UNITY_STANDALONE_WIN
         input = new InputKeyboard();
 #elif UNITY_ANDROID
@@ -22,16 +22,16 @@ public class InputManager : MonoBehaviour {
 
     public bool Fire()
     {
-        return input.Fire();
+        return (PlayerManager.instance.PlayerAlive()) ? input.Fire() : false; 
     }
 
     public Vector3 Movement()
     {
-        return input.Movement();
+        return (PlayerManager.instance.PlayerAlive()) ? input.Movement() : Vector3.zero;
     }
 
     public Quaternion LookAt()
     {
-        return input.LookAt();
+        return (PlayerManager.instance.PlayerAlive()) ? input.LookAt() : new Quaternion(0, 0.707f, 0, 0.707f);
     }
 }

@@ -12,7 +12,7 @@ public class ZombieBuilder : MonoBehaviour {
         instance = this;
     }
 
-    public void Build(string type, Vector3 pPos, Vector3 pRot)
+    public GameObject Build(string type, Vector3 pPos, Vector3 pRot)
     {
         switch (type)
         {
@@ -20,13 +20,12 @@ public class ZombieBuilder : MonoBehaviour {
                 obj = ZombieFactory.instance.Create(type);
                 Zombie a = obj.AddComponent<Zombie>();
                 a.SetSpeed(0.7f);
+                a.GiveScore(5);
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
-                //return obj;
-                break;
+                return obj;
             default:
-                //return null;
-                break;
+                return null;
         }
     }
 }
