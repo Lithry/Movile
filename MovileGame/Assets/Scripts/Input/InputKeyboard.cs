@@ -7,8 +7,7 @@ public class InputKeyboard : IInput {
     private float angle;
     private Vector3 direction;
 
-    public Vector3 Movement()
-    {
+    public Vector3 Movement() {
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = 0;
         direction.z = Input.GetAxisRaw("Vertical");
@@ -19,15 +18,13 @@ public class InputKeyboard : IInput {
             return direction;
     }
 
-    public Quaternion LookAt()
-    {
+    public Quaternion LookAt() {
         lookAt = Input.mousePosition - Camera.main.WorldToScreenPoint(PlayerManager.instance.PlayerPos());
         angle = -Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
         return Quaternion.AngleAxis(angle, Vector3.up);
     }
 
-    public bool Fire()
-    {
+    public bool Fire() {
         return Input.GetButtonDown("Fire1") ? true : false;
     }
 }

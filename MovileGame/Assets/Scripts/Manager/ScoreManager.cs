@@ -6,12 +6,10 @@ public class ScoreManager : MonoBehaviour {
     public static ScoreManager instance = null;
     private int score;
     
-    // Use this for initialization
     void Start() {
         instance = this;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

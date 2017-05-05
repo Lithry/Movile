@@ -9,7 +9,6 @@ public class CanvasManager : MonoBehaviour {
     public GameObject onGame;
     public Text scoreText;
 
-    // Use this for initialization
     void Start() {
         instance = this;
 
@@ -17,16 +16,13 @@ public class CanvasManager : MonoBehaviour {
         onGame.SetActive(false);
     }
 	
-	// Update is called once per frame
 	void Update () {
         if (onGame.activeSelf) {
             scoreText.text = ScoreManager.instance.GetScore().ToString();
         }
-        
 	}
 
-    public void ReturnToMenu()
-    {
+    public void ReturnToMenu() {
         onMenu.SetActive(true);
         onGame.SetActive(false);
         SceneManager.instance.OnGame(false);
@@ -41,8 +37,7 @@ public class CanvasManager : MonoBehaviour {
         PlayerManager.instance.NewPlayer();
     }
 
-    public void Quit()
-    {
+    public void Quit() {
         Application.Quit();
     }
 }

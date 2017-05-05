@@ -6,17 +6,13 @@ public class PlayerFactory : MonoBehaviour {
     static public PlayerFactory instance = null;
     public GameObject playerPrefab;
 
-    void Awake()
-    {
+    void Awake() {
         instance = this;
     }
 
-
-    public GameObject Create(string type)
-    {
-        switch (type)
-        {
-            case "Player":
+    public GameObject Create(Units.Player type) {
+        switch (type) {
+            case Units.Player.Player:
                 GameObject player = Instantiate(playerPrefab, new Vector3(0, 0.5f, 0), new Quaternion(0, 0, 0, 1));
                 return player;
             default:
@@ -24,8 +20,7 @@ public class PlayerFactory : MonoBehaviour {
         }
     }
 
-    public void Recycle(GameObject obj)
-    {
+    public void Recycle(GameObject obj) {
         Destroy(obj);
     }
 }

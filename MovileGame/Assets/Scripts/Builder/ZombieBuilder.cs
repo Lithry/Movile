@@ -6,21 +6,17 @@ public class ZombieBuilder : MonoBehaviour {
     static public ZombieBuilder instance = null;
     private GameObject obj;
 
-
-    void Awake()
-    {
+    void Awake() {
         instance = this;
     }
 
-    public GameObject Build(string type, Vector3 pPos, Vector3 pRot)
-    {
-        switch (type)
-        {
-            case "Zombie":
+    public GameObject Build(Units.Enemigos type, Vector3 pPos, Vector3 pRot) {
+        switch (type) {
+            case Units.Enemigos.Zombie:
                 obj = ZombieFactory.instance.Create(type);
                 Zombie a = obj.AddComponent<Zombie>();
-                a.SetSpeed(0.7f);
-                a.GiveScore(5);
+                a.SetSpeed(Units.zombieSpeed);
+                a.GiveScore(Units.zombiePoints);
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 return obj;

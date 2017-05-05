@@ -6,8 +6,7 @@ public class InputManager : MonoBehaviour {
     static public InputManager instance = null;
     private IInput input;
 
-    void Awake()
-    {
+    void Awake() {
         instance = this;
 
 #if   UNITY_EDITOR
@@ -17,21 +16,17 @@ public class InputManager : MonoBehaviour {
 #elif UNITY_ANDROID
         input = new InputTouchscreen();
 #endif
-
     }
 
-    public bool Fire()
-    {
+    public bool Fire() {
         return (PlayerManager.instance.PlayerAlive()) ? input.Fire() : false; 
     }
 
-    public Vector3 Movement()
-    {
+    public Vector3 Movement() {
         return (PlayerManager.instance.PlayerAlive()) ? input.Movement() : Vector3.zero;
     }
 
-    public Quaternion LookAt()
-    {
+    public Quaternion LookAt() {
         return (PlayerManager.instance.PlayerAlive()) ? input.LookAt() : new Quaternion(0, 0.707f, 0, 0.707f);
     }
 }

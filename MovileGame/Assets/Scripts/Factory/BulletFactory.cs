@@ -10,12 +10,9 @@ public class BulletFactory : MonoBehaviour {
         instance = this;
 	}
 	
-
-    public GameObject Create(string type)
-    {
-        switch (type)
-        {
-            case "Pistol":
+    public GameObject Create(Units.Armas type) {
+        switch (type) {
+            case Units.Armas.Pistola:
                 GameObject bullet = Instantiate(bulletCubePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 1));
                 return bullet;
             default:
@@ -23,8 +20,7 @@ public class BulletFactory : MonoBehaviour {
         }
     }
 
-    public void Recycle(GameObject obj)
-    {
+    public void Recycle(GameObject obj) {
         Destroy(obj);
     }
 }

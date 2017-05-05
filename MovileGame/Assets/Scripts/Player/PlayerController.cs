@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour {
         transform.rotation = InputManager.instance.LookAt();
 
         if (InputManager.instance.Fire())
-            gun.FireGun("Pistol");
+            gun.FireGun(Units.Armas.Pistola);
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.tag == "Enemy")
+    private void OnTriggerEnter(Collider collider) {
+        if (collider.tag == "Enemy")
         {
             PlayerManager.instance.PlayerDied();
             PlayerFactory.instance.Recycle(gameObject);

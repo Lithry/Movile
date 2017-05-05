@@ -6,16 +6,13 @@ public class BulletBuilder : MonoBehaviour {
     static public BulletBuilder instance = null;
     private GameObject obj;
     
-    
     void Awake () {
         instance = this;
 	}
 	
-    public void Build(string type, Vector3 pPos, Vector3 pRot)
-    {
-        switch (type)
-        {
-            case "Pistol":
+    public void Build(Units.Armas type, Vector3 pPos, Vector3 pRot) {
+        switch (type) {
+            case Units.Armas.Pistola:
                 obj = BulletFactory.instance.Create(type);
                 obj.AddComponent<Pistol>();
                 obj.transform.position = pPos;
