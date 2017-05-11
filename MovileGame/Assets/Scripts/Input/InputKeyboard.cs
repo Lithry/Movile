@@ -25,6 +25,6 @@ public class InputKeyboard : IInput {
     }
 
     public bool Fire() {
-        return Input.GetButtonDown("Fire1") ? true : false;
+        return Input.GetButton("Fire1") ? true : false;
     }
 }

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : Enemy {
-    private Rigidbody rb;
     private Vector3 moveTo;
 
     void Start () {
-        rb = GetComponent<Rigidbody>();
 	}
 	
 	void Update () {
@@ -16,7 +14,7 @@ public class Zombie : Enemy {
         moveTo.z = PlayerManager.instance.PlayerPos().z;
         transform.LookAt(moveTo);
 
-        rb.AddForce(transform.forward * speed);
+        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
 	}
     
     private void OnTriggerEnter(Collider collider) {

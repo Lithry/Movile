@@ -16,11 +16,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        rb.AddForce(InputManager.instance.Movement() * speed);
+        transform.Translate(InputManager.instance.Movement() * speed * Time.deltaTime, Space.World);
         transform.rotation = InputManager.instance.LookAt();
 
         if (InputManager.instance.Fire())
-            gun.FireGun(Units.Armas.Pistola);
+            gun.FireGun();
     }
 
     private void OnTriggerEnter(Collider collider) {
