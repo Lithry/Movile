@@ -13,6 +13,7 @@ public class GunController : MonoBehaviour {
         weapon = Units.Armas.Pistola;
         reload = Units.weaponReloadTime;
         reloadCount = (int)weapon;
+        GiveCanvasReloadTime();
     }
 
     public void FireGun()
@@ -22,10 +23,16 @@ public class GunController : MonoBehaviour {
         {
             BulletBuilder.instance.Build(weapon, tip.position, tip.eulerAngles);
             reloadCount = Time.time;
+            CanvasManager.instance.TimeOfShoot(reloadCount);
         }
     }
 
     public void ChangeWeapon(Units.Armas obj) {
         weapon = obj;
+    }
+
+    private void GiveCanvasReloadTime()
+    {
+        CanvasManager.instance.WeaponReloadTime(reload[(int)weapon]);
     }
 }
