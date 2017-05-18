@@ -17,6 +17,7 @@ public class ZombieBuilder : MonoBehaviour {
                 Zombie a = obj.AddComponent<Zombie>();
                 a.SetSpeed(Units.zombieSpeed);
                 a.GiveScore(Units.zombiePoints);
+                a.GiveExp(Units.zombieExp);
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 return obj;

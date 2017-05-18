@@ -19,7 +19,7 @@ public class GunController : MonoBehaviour {
     public void FireGun()
     {
         //reloadCount += Time.deltaTime;
-        if (Time.time - reloadCount >= reload[(int)weapon])
+        if (Time.time - reloadCount >= (reload[(int)weapon] / PlayerManager.instance.GetPlussFromLv()))
         {
             BulletBuilder.instance.Build(weapon, tip.position, tip.eulerAngles);
             reloadCount = Time.time;

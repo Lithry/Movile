@@ -19,6 +19,7 @@ public class Zombie : Enemy {
     
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Bullet") {
+            PlayerManager.instance.GetExp(giveExp);
             ScoreManager.instance.AddScore(giveScore);
             ZombieManager.instance.Recycle(gameObject);
         }

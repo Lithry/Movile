@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 lookAt;
     private float angle;
     private GunController gun;
+    private int exp;
+    
 
     public float speed;
 
@@ -16,7 +18,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        transform.Translate(InputManager.instance.Movement() * speed * Time.deltaTime, Space.World);
+        transform.Translate(InputManager.instance.Movement() * (speed * PlayerManager.instance.GetPlussFromLv()) * Time.deltaTime, Space.World);
         transform.rotation = InputManager.instance.LookAt();
 
         if (InputManager.instance.Fire())

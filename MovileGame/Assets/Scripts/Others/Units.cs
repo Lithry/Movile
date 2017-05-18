@@ -7,6 +7,14 @@ static public class Units {
         Player = 0,
     }
 
+    public struct Level
+    {
+        public int level;
+        public float pluss;
+        public int exp;
+        public int expToNextLv;
+    }
+
     public enum Enemigos {
         Zombie = 0,
     }
@@ -34,5 +42,6 @@ static public class Units {
 
     static public float zombieSpeed = 0.7f;
     static public int zombiePoints = 5;
+    static public int zombieExp = 25;
 	
 }
