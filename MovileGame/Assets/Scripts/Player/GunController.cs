@@ -21,7 +21,7 @@ public class GunController : MonoBehaviour {
         //reloadCount += Time.deltaTime;
         if (Time.time - reloadCount >= (reload[(int)weapon] / PlayerManager.instance.GetPlussFromLv()))
         {
-            BulletBuilder.instance.Build(weapon, tip.position, tip.eulerAngles);
+            BulletBuilder.instance.Build(Units.Type.Weapon, weapon, tip.position, tip.eulerAngles);
             reloadCount = Time.time;
             CanvasManager.instance.TimeOfShoot(reloadCount);
         }

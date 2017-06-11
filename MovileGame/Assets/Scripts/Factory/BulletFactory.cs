@@ -10,14 +10,9 @@ public class BulletFactory : MonoBehaviour {
         instance = this;
 	}
 	
-    public GameObject Create(Units.Armas type) {
-        switch (type) {
-            case Units.Armas.Pistola:
-                GameObject bullet = Instantiate(bulletCubePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 1));
-                return bullet;
-            default:
-                return null;
-        }
+    public GameObject Create() {
+        GameObject bullet = Instantiate(bulletCubePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 1));
+        return bullet;
     }
 
     public void Recycle(GameObject obj) {

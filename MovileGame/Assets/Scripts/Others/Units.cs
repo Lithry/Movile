@@ -15,6 +15,12 @@ static public class Units {
         public int expToNextLv;
     }
 
+    public enum Type
+    {
+        Weapon = 0,
+        Enemies
+    }
+
     public enum Enemigos {
         Zombie = 0,
     }
