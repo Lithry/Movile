@@ -15,29 +15,21 @@ static public class Units {
         public int expToNextLv;
     }
 
-    public enum Type
+    public enum PoolType
     {
-        Weapon = 0,
-        Enemies
+        Bullet = 0
     }
 
     public enum Enemigos {
         Zombie = 0,
     }
-    public struct Weapons
-    {
-        Armas Type;
-        float ReloadTime;
-    }
     
-    public enum Armas {
-        Pistola = 0,
-        UZI
+    public enum Weapons {
+        Gun = 0,
     }
 
     static public float[] weaponReloadTime =
-        {   1.3f,
-            0.3f };
+        {   1.3f };
     /*static public Weapons[] weapons =
     {
         Armas.Pistola, 2.0f;

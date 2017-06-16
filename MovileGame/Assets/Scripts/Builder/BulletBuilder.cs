@@ -10,16 +10,11 @@ public class BulletBuilder : MonoBehaviour {
         instance = this;
 	}
 	
-    public void Build(Units.Type type, Units.Armas wep, Vector3 pPos, Vector3 pRot) {
-        obj = PoolManager.instance.Spawn(type);
-
-        if (obj == null)
+    public void Build(Units.Weapons wep, Vector3 pPos, Vector3 pRot) {
+        obj = PoolManager.instance.Spawn(Units.PoolType.Bullet);
 
         switch (wep) {
-            case Units.Armas.Pistola:
-                //obj = BulletFactory.instance.Create(wep);
-                Pistol a = obj.AddComponent<Pistol>();
-                a.ResetTimer();
+            case Units.Weapons.Gun:
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 

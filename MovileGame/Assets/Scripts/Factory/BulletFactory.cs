@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BulletFactory : MonoBehaviour {
     static public BulletFactory instance = null;
-    public GameObject bulletCubePrefab;
+    public GameObject prefab;
 
     void Awake () {
         instance = this;
 	}
 	
     public GameObject Create() {
-        GameObject bullet = Instantiate(bulletCubePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 1));
+        GameObject bullet = Instantiate(prefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 1));
         return bullet;
     }
 

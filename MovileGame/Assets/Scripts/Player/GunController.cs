@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
     private Transform tip;
-    private Units.Armas weapon;
+    private Units.Weapons weapon;
     private float[] reload;
     private float reloadCount;
 
 	void Start () {
         tip = transform.FindChild("Tip");
-        weapon = Units.Armas.Pistola;
+        weapon = Units.Weapons.Gun;
         reload = Units.weaponReloadTime;
         reloadCount = (int)weapon;
         GiveCanvasReloadTime();
@@ -18,16 +18,15 @@ public class GunController : MonoBehaviour {
 
     public void FireGun()
     {
-        //reloadCount += Time.deltaTime;
         if (Time.time - reloadCount >= (reload[(int)weapon] / PlayerManager.instance.GetPlussFromLv()))
         {
-            BulletBuilder.instance.Build(Units.Type.Weapon, weapon, tip.position, tip.eulerAngles);
+            BulletBuilder.instance.Build(weapon, tip.position, tip.eulerAngles);
             reloadCount = Time.time;
             CanvasManager.instance.TimeOfShoot(reloadCount);
         }
     }
 
-    public void ChangeWeapon(Units.Armas obj) {
+    public void ChangeWeapon(Units.Weapons obj) {
         weapon = obj;
     }
 

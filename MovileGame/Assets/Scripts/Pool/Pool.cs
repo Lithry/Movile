@@ -5,30 +5,23 @@ using UnityEngine;
 public class Pool : MonoBehaviour {
     public GameObject prefab;
     public int count = 10;
-
-    public Units.Type type;
-
+    public Units.PoolType type;
     private List<PoolObject> objects = new List<PoolObject>();
-	// Use this for initialization
+
 	void Start () {
-        for (int i = 0; i < count; i++)
-        {
+        for (int i = 0; i < count; i++) {
             PoolObject po = Create();
             po.gameObject.SetActive(false);
             objects.Add(po);
         }
 	}
 	
-	// Update is called once per frame
+
 	public PoolObject Create () {
         GameObject go = null;
-        switch (type)
-        {
-            case Units.Type.Weapon:
+        switch (type) {
+            case Units.PoolType.Bullet:
                 go = BulletFactory.instance.Create();
-                break;
-            case Units.Type.Enemies:
-                //go = ZombieFactory.instance.Create();
                 break;
         }
 
@@ -37,12 +30,10 @@ public class Pool : MonoBehaviour {
         return po;
     }
 
-    public GameObject Spawn()
-    {
+    public GameObject Spawn() {
         PoolObject po = null;
 
-        if (objects.Count > 0)
-        {
+        if (objects.Count > 0) {
             po = objects[0];
             po.gameObject.SetActive(true);
             objects.RemoveAt(0);
@@ -55,8 +46,7 @@ public class Pool : MonoBehaviour {
 
     }
 
-    public void Recycl(PoolObject po)
-    {
+    public void Recycl(PoolObject po) {
         po.gameObject.SetActive(false);
         objects.Add(po);
     }
