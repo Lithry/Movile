@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Enemy")
         {
-            //PlayerManager.instance.PlayerDied();
-            //PlayerFactory.instance.Recycle(gameObject);
+            PlayerManager.instance.PlayerDied();
+            PlayerFactory.instance.Recycle(gameObject);
         }
     }
 }

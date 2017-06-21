@@ -17,7 +17,8 @@ static public class Units {
 
     public enum PoolType
     {
-        Bullet = 0
+        Bullet = 0,
+        Zombie
     }
 
     public enum Enemigos {

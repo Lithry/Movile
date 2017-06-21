@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Zombie : Enemy {
     private Vector3 moveTo;
+    private PoolObject po;
 
     void Start () {
 	}
@@ -21,7 +22,9 @@ public class Zombie : Enemy {
         if (collider.tag == "Bullet") {
             PlayerManager.instance.GetExp(giveExp);
             ScoreManager.instance.AddScore(giveScore);
-            ZombieManager.instance.Recycle(gameObject);
+            if (po == null)
+                po = GetComponent<PoolObject>();
+            ZombieManager.instance.Recycle(po, gameObject);
         }
     }
 }

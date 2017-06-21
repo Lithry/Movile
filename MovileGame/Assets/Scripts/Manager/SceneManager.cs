@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour {
     static public SceneManager instance = null;
+    public GameObject[] components;
     private bool onGame;
     private float delay;
 
 	void Awake() {
         instance = this;
+        for (int i = 0; i < components.Length; i++)
+        {
+            Instantiate(components[i]);
+        }
     }
 	
 	void Update () {
@@ -16,7 +21,7 @@ public class SceneManager : MonoBehaviour {
             delay += Time.deltaTime;
 
         if (delay > 3) {
-            ZombieManager.instance.KillAll();
+            ZombieManager.instance.RecycleAll();
             CanvasManager.instance.ReturnToMenu();
         }
 	}

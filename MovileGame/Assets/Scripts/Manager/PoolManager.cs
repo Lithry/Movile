@@ -22,6 +22,8 @@ public class PoolManager : MonoBehaviour {
         switch (type) {
             case Units.PoolType.Bullet:
                 return pools[0].Spawn();
+            case Units.PoolType.Zombie:
+                return pools[1].Spawn();
         }
 
         return null;
@@ -31,6 +33,9 @@ public class PoolManager : MonoBehaviour {
         switch (type) {
             case Units.PoolType.Bullet:
                 pools[0].Recycl(po);
+                break;
+            case Units.PoolType.Zombie:
+                pools[1].Recycl(po);
                 break;
             default:
                 break;

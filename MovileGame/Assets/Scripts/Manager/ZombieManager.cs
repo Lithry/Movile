@@ -33,16 +33,20 @@ public class ZombieManager : MonoBehaviour {
         }
     }
 
-    public void Recycle(GameObject obj) {
+    public void Recycle(PoolObject po, GameObject obj) {
         if (enemies.Contains(obj))
             enemies.Remove(obj);
 
-        ZombieFactory.instance.Recycle(obj);
+        PoolManager.instance.Recycle(po, Units.PoolType.Zombie);
+        //ZombieFactory.instance.Recycle(obj);
     }
 
-    public void KillAll() {
+    public void RecycleAll() {
         for (int i = 0; i < enemies.Count; i++) {
-            ZombieFactory.instance.Recycle(enemies[i]); 
+            PoolObject po = enemies[i].GetComponent<PoolObject>();
+            enemies.Remove(enemies[i]);
+            PoolManager.instance.Recycle(po, Units.PoolType.Zombie);
+            //ZombieFactory.instance.Recycle(enemies[i]);
         }
     }
 }

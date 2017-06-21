@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pool : MonoBehaviour {
-    public GameObject prefab;
     public int count = 10;
     public Units.PoolType type;
     private List<PoolObject> objects = new List<PoolObject>();
@@ -22,6 +21,9 @@ public class Pool : MonoBehaviour {
         switch (type) {
             case Units.PoolType.Bullet:
                 go = BulletFactory.instance.Create();
+                break;
+            case Units.PoolType.Zombie:
+                go = ZombieFactory.instance.Create();
                 break;
         }
 

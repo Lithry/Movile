@@ -5,19 +5,15 @@ using UnityEngine;
 public class ZombieFactory : MonoBehaviour {
     static public ZombieFactory instance = null;
     public GameObject zombiePrefab;
+    private GameObject zombie;
 
     void Awake() {
         instance = this;
     }
 
-    public GameObject Create(Units.Enemigos type) {
-        switch (type) {
-            case Units.Enemigos.Zombie:
-                GameObject zombie = Instantiate(zombiePrefab, new Vector3(0, 0.2f, 0), new Quaternion(0, 0, 0, 1));
-                return zombie;
-            default:
-                return null;
-        }
+    public GameObject Create() {
+        zombie = Instantiate(zombiePrefab, new Vector3(0, 0.2f, 0), new Quaternion(0, 0, 0, 1));
+        return zombie;
     }
 
     public void Recycle(GameObject obj) {

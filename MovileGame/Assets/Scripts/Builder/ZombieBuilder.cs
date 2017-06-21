@@ -11,10 +11,11 @@ public class ZombieBuilder : MonoBehaviour {
     }
 
     public GameObject Build(Units.Enemigos type, Vector3 pPos, Vector3 pRot) {
+        obj = PoolManager.instance.Spawn(Units.PoolType.Zombie);
+
         switch (type) {
             case Units.Enemigos.Zombie:
-                obj = ZombieFactory.instance.Create(type);
-                Zombie a = obj.AddComponent<Zombie>();
+                Zombie a = obj.GetComponent<Zombie>();
                 a.SetSpeed(Units.zombieSpeed);
                 a.GiveScore(Units.zombiePoints);
                 a.GiveExp(Units.zombieExp);
