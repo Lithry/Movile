@@ -28,7 +28,7 @@ public class CanvasManager : MonoBehaviour {
 
         levelDisplay.text = "Lv: " + PlayerManager.instance.Level().ToString();
 
-        reloadWeapon.fillAmount = ((Time.time - timeOfShoot) / (reloadWeaponTime / PlayerManager.instance.GetPlussFromLv()));
+        //reloadWeapon.fillAmount = ((Time.time - timeOfShoot) / (reloadWeaponTime / PlayerManager.instance.GetPlussFromLv()));
 	}
 
     public void TimeOfShoot(float time) {

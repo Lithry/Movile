@@ -38,15 +38,13 @@ public class ZombieManager : MonoBehaviour {
             enemies.Remove(obj);
 
         PoolManager.instance.Recycle(po, Units.PoolType.Zombie);
-        //ZombieFactory.instance.Recycle(obj);
     }
 
     public void RecycleAll() {
         for (int i = 0; i < enemies.Count; i++) {
             PoolObject po = enemies[i].GetComponent<PoolObject>();
-            enemies.Remove(enemies[i]);
             PoolManager.instance.Recycle(po, Units.PoolType.Zombie);
-            //ZombieFactory.instance.Recycle(enemies[i]);
         }
+        enemies.Clear();        
     }
 }

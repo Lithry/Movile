@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     private PoolObject po;
-    private float timer;
+    private float speed;
+    private int pirce;
+    private float timerForRecycle;
 
     private void OnEnable() {
-        timer = 0;
+        timerForRecycle = 0;
     }
     void Update () {
-        timer += Time.deltaTime;
+        timerForRecycle += Time.deltaTime;
 
-        if (timer > 2)
+        if (timerForRecycle > 2)
             End();
         
-        transform.Translate(Vector3.forward * 3.5f * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    public void SetSpeed(float spd)
+    {
+        speed = spd;
+    }
+
+    public void SetPircePower(int pow)
+    {
+        pirce = pow;
     }
 
     void End() {
@@ -26,9 +38,15 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Enemy") {
-            if (po == null)
-                po = GetComponent<PoolObject>();
-            PoolManager.instance.Recycle(po, Units.PoolType.Bullet);
+            
+            if (pirce > 1)
+                pirce -= 1;
+            else {
+                if (po == null)
+                    po = GetComponent<PoolObject>();
+
+                PoolManager.instance.Recycle(po, Units.PoolType.Bullet);
+            }
         }
     }
 }

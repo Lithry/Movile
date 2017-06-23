@@ -18,6 +18,14 @@ public class Zombie : Enemy {
         transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
 	}
     
+    public void Hit() {
+        PlayerManager.instance.GetExp(giveExp);
+        ScoreManager.instance.AddScore(giveScore);
+        if (po == null)
+            po = GetComponent<PoolObject>();
+        ZombieManager.instance.Recycle(po, gameObject);
+    }
+
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Bullet") {
             PlayerManager.instance.GetExp(giveExp);

@@ -36,6 +36,7 @@
 			sampler2D _SphereMap;
 
 			float4 _MainTex_ST;
+			float4 _SphereMap_ST;
 
 			v2f vert(appdata v)
 			{
