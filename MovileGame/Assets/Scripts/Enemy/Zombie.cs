@@ -28,11 +28,16 @@ public class Zombie : Enemy {
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Bullet") {
-            PlayerManager.instance.GetExp(giveExp);
-            ScoreManager.instance.AddScore(giveScore);
-            if (po == null)
-                po = GetComponent<PoolObject>();
-            ZombieManager.instance.Recycle(po, gameObject);
+            if (hp > 1) {
+                hp -= 1;
+            }
+            else {
+                PlayerManager.instance.GetExp(giveExp);
+                ScoreManager.instance.AddScore(giveScore);
+                if (po == null)
+                    po = GetComponent<PoolObject>();
+                ZombieManager.instance.Recycle(po, gameObject);
+            }
         }
     }
 }

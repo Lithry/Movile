@@ -5,6 +5,7 @@ using UnityEngine;
 public class ZombieBuilder : MonoBehaviour {
     static public ZombieBuilder instance = null;
     private GameObject obj;
+    private Vector3 scale;
 
     void Awake() {
         instance = this;
@@ -12,13 +13,26 @@ public class ZombieBuilder : MonoBehaviour {
 
     public GameObject Build(Units.Enemigos type, Vector3 pPos, Vector3 pRot) {
         obj = PoolManager.instance.Spawn(Units.PoolType.Zombie);
+        Zombie z = obj.GetComponent<Zombie>();
 
         switch (type) {
             case Units.Enemigos.Zombie:
-                Zombie a = obj.GetComponent<Zombie>();
-                a.SetSpeed(Units.zombieSpeed);
-                a.GiveScore(Units.zombiePoints);
-                a.GiveExp(Units.zombieExp);
+                z.SetHP(1);
+                z.SetSpeed(Units.zombieSpeed);
+                z.GiveScore(Units.zombiePoints);
+                z.GiveExp(Units.zombieExp);
+                scale.Set(0.2f, 0.2f, 0.2f);
+                obj.transform.localScale = scale;
+                obj.transform.position = pPos;
+                obj.transform.eulerAngles = pRot;
+                return obj;
+            case Units.Enemigos.BigZombie:
+                z.SetHP(20);
+                z.SetSpeed(Units.zombieBossSpeed);
+                z.GiveScore(Units.zombieBossPoints);
+                z.GiveExp(Units.zombieBossExp);
+                scale.Set(0.4f, 0.4f, 0.4f);
+                obj.transform.localScale = scale;
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 return obj;

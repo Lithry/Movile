@@ -16,17 +16,21 @@ public class BulletBuilder : MonoBehaviour {
         bul = obj.GetComponent<Bullet>();
 
         switch (wep) {
-            case Units.Weapons.Gun:
+            case Units.Weapons.Pistol:
+                bul.SetRecycleTime(2);
                 bul.SetSpeed(5);
                 bul.SetPircePower(1);
-
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
-                
-                //return obj;
+                break;
+            case Units.Weapons.Shotgun:
+                bul.SetRecycleTime(0.1f);
+                bul.SetSpeed(7);
+                bul.SetPircePower(3);
+                obj.transform.position = pPos;
+                obj.transform.eulerAngles = pRot;
                 break;
             default:
-                //return null;
                 break;
         }
     }

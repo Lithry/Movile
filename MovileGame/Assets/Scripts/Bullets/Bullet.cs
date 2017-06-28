@@ -7,14 +7,15 @@ public class Bullet : MonoBehaviour {
     private float speed;
     private int pirce;
     private float timerForRecycle;
+    private float timer;
 
     private void OnEnable() {
-        timerForRecycle = 0;
+        timer = 0;
     }
     void Update () {
-        timerForRecycle += Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if (timerForRecycle > 2)
+        if (timer > timerForRecycle)
             End();
         
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -28,6 +29,10 @@ public class Bullet : MonoBehaviour {
     public void SetPircePower(int pow)
     {
         pirce = pow;
+    }
+
+    public void SetRecycleTime(float t) {
+        timerForRecycle = t;
     }
 
     void End() {

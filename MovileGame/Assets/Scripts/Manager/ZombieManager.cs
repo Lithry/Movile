@@ -6,6 +6,10 @@ public class ZombieManager : MonoBehaviour {
     static public ZombieManager instance = null;
     private float respawnDelay;
     private float respawn;
+
+    private float bossesRespawn;
+    private float bossRespawnTime;
+
     private List<GameObject> enemies;
 
     void Start() {
@@ -21,6 +25,7 @@ public class ZombieManager : MonoBehaviour {
     private void Respawn() {
         if (PlayerManager.instance.PlayerAlive()) {
             respawn += Time.deltaTime;
+            bossesRespawn += Time.deltaTime;
 
             if (respawn > respawnDelay) {
                 int angle = (int)Random.Range(1.00f, 360.99f);
@@ -28,7 +33,15 @@ public class ZombieManager : MonoBehaviour {
 
                 enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.Zombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
                 respawn = 0;
-                respawnDelay = Random.Range(0.5f, 2.0f);
+                respawnDelay = Random.Range(0.5f / PlayerManager.instance.GetPlussFromLv(), 2.0f / PlayerManager.instance.GetPlussFromLv());
+            }
+
+            if (bossesRespawn > bossRespawnTime) {
+                int angle = (int)Random.Range(1.00f, 360.99f);
+                Vector3 respawnPos = new Vector3(Mathf.Cos(angle) * 3, 0.3f, Mathf.Sin(angle) * 3);
+
+                enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.BigZombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
+                bossRespawnTime = Random.Range(20f / PlayerManager.instance.GetPlussFromLv(), 60f / PlayerManager.instance.GetPlussFromLv());
             }
         }
     }

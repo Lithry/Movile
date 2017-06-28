@@ -4,72 +4,65 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
     private Transform tip;
+    private Weapon wep;
     private Units.Weapons weapon;
     private float[] reload;
     private float reloadCount;
 
-    private Units.Ammo ammoType;
-    private int ammo;
-    private int currentAmmo;
-    private float shootRate;
-    private float rechargeTime;
-
 
     void Start () {
         tip = transform.FindChild("Tip");
-        
-        weapon = Units.Weapons.Gun;
-        
-        ammoType = Units.weapons[(int)weapon].ammoType;
-        ammo = Units.weapons[(int)weapon].ammo;
-        currentAmmo = ammo;
-        shootRate = Units.weapons[(int)weapon].shootRate;
-        rechargeTime = Units.weapons[(int)weapon].reloadTime;
+        wep = gameObject.AddComponent<Shotgun>();
+        weapon = Units.Weapons.Shotgun;
+        wep.SetValues(Units.weapons[(int)weapon].ammo, Units.weapons[(int)weapon].shootRate, Units.weapons[(int)weapon].shootSoeed, Units.weapons[(int)weapon].dispersion, Units.weapons[(int)weapon].reloadTime);
 
         reloadCount = 0;
 
-        //GiveCanvasReloadTime();
+        GiveCanvasReloadTime();
     }
 
     public void FireGun()
     {
-        if (currentAmmo > 0) {
-            if (Time.time - reloadCount >= shootRate / PlayerManager.instance.GetPlussFromLv()) {
-                BulletBuilder.instance.Build(weapon, tip.position, tip.eulerAngles);
-                currentAmmo -= 1;
+        if (wep.GetCurrentAmmo() > 0) {
+            if (Time.time - reloadCount >= wep.GetShootSpeed() / PlayerManager.instance.GetPlussFromLv()) {
+                wep.Shoot(tip.position, tip.eulerAngles);
                 reloadCount = Time.time;
                 CanvasManager.instance.TimeOfShoot(reloadCount);
-                CanvasManager.instance.WeaponReloadTime(shootRate);
+                if (wep.GetCurrentAmmo() == 0)
+                    CanvasManager.instance.WeaponReloadTime(wep.GetReloadTime());
             }
         }
-        else if (currentAmmo <= 0)
+        else if (wep.GetCurrentAmmo() < 1)
         {
-            if ((Time.time - reloadCount >= rechargeTime / PlayerManager.instance.GetPlussFromLv())) {
-                currentAmmo = ammo;
-                CanvasManager.instance.WeaponReloadTime(rechargeTime);
+            if ((Time.time - reloadCount >= wep.GetReloadTime() / PlayerManager.instance.GetPlussFromLv())) {
+                wep.Reload();
+                CanvasManager.instance.WeaponReloadTime(wep.GetShootSpeed());
                 reloadCount = Time.time;
                 CanvasManager.instance.TimeOfShoot(reloadCount);
             }
         }
-
-        /*if (Time.time - reloadCount >= (reload[(int)weapon] / PlayerManager.instance.GetPlussFromLv()))
-        {
-            BulletBuilder.instance.Build(weapon, tip.position, tip.eulerAngles);
-            reloadCount = Time.time;
-            CanvasManager.instance.TimeOfShoot(reloadCount);
-        }*/
     }
 
     public void ChangeWeapon(Units.Weapons obj) {
-        weapon = obj;
-        ammo = Units.weapons[(int)weapon].ammo;
-        currentAmmo = ammo;
-        shootRate = Units.weapons[(int)weapon].shootRate;
-        rechargeTime = Units.weapons[(int)weapon].reloadTime;
+        switch (obj)
+        {
+            case Units.Weapons.Pistol:
+                Destroy(wep);
+                wep = gameObject.AddComponent<Pistol>();
+                wep.SetValues(Units.weapons[(int)obj].ammo, Units.weapons[(int)obj].shootRate, Units.weapons[(int)obj].shootSoeed, Units.weapons[(int)obj].dispersion, Units.weapons[(int)obj].reloadTime);
+                break;
+            case Units.Weapons.Shotgun:
+                Destroy(wep);
+                wep = gameObject.AddComponent<Shotgun>();
+                wep.SetValues(Units.weapons[(int)obj].ammo, Units.weapons[(int)obj].shootRate, Units.weapons[(int)obj].shootSoeed, Units.weapons[(int)obj].dispersion, Units.weapons[(int)obj].reloadTime);
+                break;
+            default:
+                break;
+        }
     }
 
     private void GiveCanvasReloadTime()
     {
-        CanvasManager.instance.WeaponReloadTime(reload[(int)weapon]);
+        CanvasManager.instance.WeaponReloadTime(wep.GetShootSpeed());
     }
 }

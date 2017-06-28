@@ -23,6 +23,7 @@ static public class Units {
 
     public enum Enemigos {
         Zombie = 0,
+        BigZombie
     }
 
     public enum Ammo
@@ -32,26 +33,28 @@ static public class Units {
     }
     
     public struct Weapon {
-        public Ammo ammoType;
         public int ammo;
-        public float shootRate;
+        public int shootRate;
+        public float shootSoeed;
+        public float dispersion;
         public float reloadTime;
 
-        public Weapon(Ammo type, int cap, float relo, float reca) {
-            this.ammoType = type;
+        public Weapon(int cap, int rate, float speed, float angle, float reca) {
             this.ammo = cap;
-            this.shootRate = relo;
+            this.shootRate = rate;
+            this.shootSoeed = speed;
+            this.dispersion = angle;
             this.reloadTime = reca;
         }
     }
     static public Weapon[] weapons = new Weapon[2]
-    {
-        new Weapon(Ammo.RaylCast, 6, 0.3f ,1.3f), // Gun
-        new Weapon(Ammo.RaylCast, 3, 0.6f, 2.4f)  // Shotgun
+    {   // Ammo, RateOfShoot, SpeedBetwenShoot, AngleOfDispercion, ReloadTime         
+        new Weapon(6, 1, 0.3f, 3f, 1.3f), // Pistol
+        new Weapon(3, 10, 0.6f, 20f, 2.4f)  // Shotgun
     };
     public enum Weapons
     {
-        Gun = 0,
+        Pistol = 0,
         Shotgun
     }
 
@@ -60,8 +63,12 @@ static public class Units {
 
     static public float playerSpeed = 1;
 
-    static public float zombieSpeed = 0.7f;
+    static public float zombieSpeed = 0.6f;
     static public int zombiePoints = 5;
     static public int zombieExp = 25;
-	
+
+    static public float zombieBossSpeed = 0.4f;
+    static public int zombieBossPoints = 100;
+    static public int zombieBossExp = 500;
+
 }

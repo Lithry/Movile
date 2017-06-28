@@ -11,6 +11,7 @@ public class InputTouchscreen : IInput {
     private Vector3 actualTouchPositionToMove;
     private Vector3 beginTouchPositionToLook;
     private Vector3 actualTouchPositionToLook;
+    private float shootRequiresDistance;
 
     public Vector3 Movement() {
         foreach (Touch touch in Input.touches) {
@@ -48,6 +49,9 @@ public class InputTouchscreen : IInput {
                     actualTouchPositionToLook = touch.position;
 
                     lookAt = actualTouchPositionToLook - beginTouchPositionToLook;
+
+                    shootRequiresDistance = lookAt.magnitude;
+
                     angle = -Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
 
                     actualLookAt = Quaternion.AngleAxis(angle, Vector3.up);
@@ -61,7 +65,8 @@ public class InputTouchscreen : IInput {
     public bool Fire() {
         foreach (Touch touch in Input.touches) {
             if (Camera.main.ScreenToViewportPoint(touch.position).x > 0.5) {
-                return true;
+                if (shootRequiresDistance > 1)
+                    return true;
             }
         }
         return false;

@@ -26,5 +26,9 @@ public class PlayerController : MonoBehaviour {
             PlayerManager.instance.PlayerDied();
             PlayerFactory.instance.Recycle(gameObject);
         }
+        if (collider.tag == "Item")
+        {
+            gun.ChangeWeapon(collider.GetComponent<Item>().type);
+        }
     }
 }
