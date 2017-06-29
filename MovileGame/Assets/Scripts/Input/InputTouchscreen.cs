@@ -11,11 +11,11 @@ public class InputTouchscreen : IInput {
     private Vector3 actualTouchPositionToMove;
     private Vector3 beginTouchPositionToLook;
     private Vector3 actualTouchPositionToLook;
-    private float shootRequiresDistance;
+    private float longToShoot;
 
     public Vector3 Movement() {
         foreach (Touch touch in Input.touches) {
-            if (Camera.main.ScreenToViewportPoint(touch.position).x < 0.5) {
+            if (Camera.main.ScreenToViewportPoint(touch.position).x < 0.5f) {
                 if (touch.phase == TouchPhase.Began) {
                     beginTouchPositionToMove.x = touch.position.x;
                     beginTouchPositionToMove.y = 0;
@@ -41,7 +41,7 @@ public class InputTouchscreen : IInput {
 
     public Quaternion LookAt() {
         foreach (Touch touch in Input.touches) {
-            if (Camera.main.ScreenToViewportPoint(touch.position).x > 0.5) {
+            if (Camera.main.ScreenToViewportPoint(touch.position).x > 0.5f) {
                 if (touch.phase == TouchPhase.Began) {
                     beginTouchPositionToLook = touch.position;
                 }
@@ -49,8 +49,7 @@ public class InputTouchscreen : IInput {
                     actualTouchPositionToLook = touch.position;
 
                     lookAt = actualTouchPositionToLook - beginTouchPositionToLook;
-
-                    shootRequiresDistance = lookAt.magnitude;
+                    longToShoot = lookAt.magnitude;
 
                     angle = -Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
 
@@ -65,7 +64,7 @@ public class InputTouchscreen : IInput {
     public bool Fire() {
         foreach (Touch touch in Input.touches) {
             if (Camera.main.ScreenToViewportPoint(touch.position).x > 0.5) {
-                if (shootRequiresDistance > 1)
+                if (longToShoot > 250)
                     return true;
             }
         }

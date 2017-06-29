@@ -9,9 +9,12 @@ public class CanvasManager : MonoBehaviour {
     public GameObject onGame;
     public Text scoreText;
     public Image reloadWeapon;
+    public Image ammo;
     public Text levelDisplay;
     private float reloadWeaponTime;
     private float timeOfShoot;
+    private float fullAmmo;
+    private float currentAmmo;
 
     void Start() {
         instance = this;
@@ -32,7 +35,9 @@ public class CanvasManager : MonoBehaviour {
         levelDisplay.text = "Lv: " + PlayerManager.instance.Level().ToString();
 
         reloadWeapon.fillAmount = ((Time.time - timeOfShoot) / (reloadWeaponTime / PlayerManager.instance.GetPlussFromLv()));
-	}
+        ammo.fillAmount = currentAmmo / fullAmmo;
+
+    }
 
     public void TimeOfShoot(float time) {
         timeOfShoot = time;
@@ -40,6 +45,14 @@ public class CanvasManager : MonoBehaviour {
 
     public void WeaponReloadTime(float time) {
         reloadWeaponTime = time;
+    }
+
+    public void SetAmmo(int ammo) {
+        fullAmmo = ammo;
+    }
+
+    public void SetCurrentAmmo(int ammo) {
+        currentAmmo = ammo;
     }
 
     public void ReturnToMenu() {

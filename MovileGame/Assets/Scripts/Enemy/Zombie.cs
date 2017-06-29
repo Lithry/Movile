@@ -5,17 +5,19 @@ using UnityEngine;
 public class Zombie : Enemy {
     private Vector3 moveTo;
     private PoolObject po;
+    private Transform trans;
 
     void Start () {
+        trans = transform;
 	}
 	
 	void Update () {
         moveTo.x = PlayerManager.instance.PlayerPos().x;
         moveTo.y = transform.position.y;
         moveTo.z = PlayerManager.instance.PlayerPos().z;
-        transform.LookAt(moveTo);
+        trans.LookAt(moveTo);
 
-        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+        trans.Translate(trans.forward * speed * Time.deltaTime, Space.World);
 	}
     
     public void Hit() {

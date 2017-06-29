@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     protected float speed = 0;
     protected int giveScore = 0;
     protected int giveExp = 0;
-	
+    
     public void SetHP(int HP) {
         hp = HP;
     }

@@ -7,16 +7,14 @@ static public class Units {
         Player = 0,
     }
 
-    public struct Level
-    {
+    public struct Level {
         public int level;
         public float pluss;
         public int exp;
         public int expToNextLv;
     }
 
-    public enum PoolType
-    {
+    public enum PoolType {
         Bullet = 0,
         Zombie
     }
@@ -26,8 +24,7 @@ static public class Units {
         BigZombie
     }
 
-    public enum Ammo
-    {
+    public enum Ammo {
         Bullets = 0,
         RaylCast
     }
@@ -47,15 +44,30 @@ static public class Units {
             this.reloadTime = reca;
         }
     }
-    static public Weapon[] weapons = new Weapon[2]
-    {   // Ammo, RateOfShoot, SpeedBetwenShoot, AngleOfDispercion, ReloadTime         
-        new Weapon(6, 1, 0.3f, 3f, 1.3f), // Pistol
-        new Weapon(3, 10, 0.6f, 20f, 2.4f)  // Shotgun
+    static public Weapon[] weapons = new Weapon[3] {   
+        // Pistol
+        new Weapon(6,       // Ammo
+                   1,       // Rate
+                   0.3f,    // Shoot Speed
+                   3f,      // Dispercion Rate
+                   1.3f),   // Reload Time
+        // Shotgun
+        new Weapon(3,       // Ammo
+                   10,      // Rate
+                   0.6f,    // Shoot Speed
+                   20f,     // Dispercion Rate
+                   2.4f),   // Reload Time
+        // MachineGun
+        new Weapon(45,      // Ammo
+                   1,       // Rate
+                   0.05f,   // Shoot Speed
+                   5,       // Dispercion Rate
+                   1.8f)    // Reload Time
     };
-    public enum Weapons
-    {
+    public enum Weapons {
         Pistol = 0,
-        Shotgun
+        Shotgun,
+        MachineGun
     }
 
     static public float[] weaponReloadTime =

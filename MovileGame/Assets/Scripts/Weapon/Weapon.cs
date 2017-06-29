@@ -28,6 +28,10 @@ public class Weapon : MonoBehaviour
         currentAmmo = ammo;
     }
 
+    public int GetAmmo() {
+        return ammo;
+    }
+
     public int GetCurrentAmmo() {
         return currentAmmo;
     }

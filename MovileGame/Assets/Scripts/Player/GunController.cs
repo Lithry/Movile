@@ -12,13 +12,15 @@ public class GunController : MonoBehaviour {
 
     void Start () {
         tip = transform.FindChild("Tip");
-        wep = gameObject.AddComponent<Shotgun>();
-        weapon = Units.Weapons.Shotgun;
+        wep = gameObject.AddComponent<MachineGun>();
+        weapon = Units.Weapons.MachineGun;
         wep.SetValues(Units.weapons[(int)weapon].ammo, Units.weapons[(int)weapon].shootRate, Units.weapons[(int)weapon].shootSoeed, Units.weapons[(int)weapon].dispersion, Units.weapons[(int)weapon].reloadTime);
 
         reloadCount = 0;
 
-        GiveCanvasReloadTime();
+        CanvasManager.instance.WeaponReloadTime(wep.GetShootSpeed());
+        CanvasManager.instance.SetAmmo(wep.GetAmmo());
+        CanvasManager.instance.SetCurrentAmmo(wep.GetCurrentAmmo());
     }
 
     public void FireGun()
@@ -28,6 +30,7 @@ public class GunController : MonoBehaviour {
                 wep.Shoot(tip.position, tip.eulerAngles);
                 reloadCount = Time.time;
                 CanvasManager.instance.TimeOfShoot(reloadCount);
+                CanvasManager.instance.SetCurrentAmmo(wep.GetCurrentAmmo());
                 if (wep.GetCurrentAmmo() == 0)
                     CanvasManager.instance.WeaponReloadTime(wep.GetReloadTime());
             }
@@ -39,6 +42,7 @@ public class GunController : MonoBehaviour {
                 CanvasManager.instance.WeaponReloadTime(wep.GetShootSpeed());
                 reloadCount = Time.time;
                 CanvasManager.instance.TimeOfShoot(reloadCount);
+                CanvasManager.instance.SetCurrentAmmo(wep.GetCurrentAmmo());
             }
         }
     }
@@ -49,20 +53,21 @@ public class GunController : MonoBehaviour {
             case Units.Weapons.Pistol:
                 Destroy(wep);
                 wep = gameObject.AddComponent<Pistol>();
-                wep.SetValues(Units.weapons[(int)obj].ammo, Units.weapons[(int)obj].shootRate, Units.weapons[(int)obj].shootSoeed, Units.weapons[(int)obj].dispersion, Units.weapons[(int)obj].reloadTime);
                 break;
             case Units.Weapons.Shotgun:
                 Destroy(wep);
                 wep = gameObject.AddComponent<Shotgun>();
-                wep.SetValues(Units.weapons[(int)obj].ammo, Units.weapons[(int)obj].shootRate, Units.weapons[(int)obj].shootSoeed, Units.weapons[(int)obj].dispersion, Units.weapons[(int)obj].reloadTime);
+                break;
+            case Units.Weapons.MachineGun:
+                Destroy(wep);
+                wep = gameObject.AddComponent<MachineGun>();
                 break;
             default:
                 break;
         }
-    }
 
-    private void GiveCanvasReloadTime()
-    {
-        CanvasManager.instance.WeaponReloadTime(wep.GetShootSpeed());
+        wep.SetValues(Units.weapons[(int)obj].ammo, Units.weapons[(int)obj].shootRate, Units.weapons[(int)obj].shootSoeed, Units.weapons[(int)obj].dispersion, Units.weapons[(int)obj].reloadTime);
+        CanvasManager.instance.SetAmmo(wep.GetAmmo());
+        CanvasManager.instance.SetCurrentAmmo(wep.GetCurrentAmmo());
     }
 }

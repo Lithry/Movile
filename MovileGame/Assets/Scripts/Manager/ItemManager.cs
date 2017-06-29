@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour {
     public Material white;
     public Material orange;
+    public Material green;
 
     public GameObject prefab;
     // Use this for initialization
@@ -20,6 +21,12 @@ public class ItemManager : MonoBehaviour {
         b.transform.position = bP;
         b.GetComponent<MeshRenderer>().material = orange;
         b.GetComponent<Item>().SetItemType(Units.Weapons.Shotgun);
+
+        Vector3 cP = new Vector3(0, 0, -2.5f);
+        GameObject c = Instantiate(prefab);
+        c.transform.position = cP;
+        c.GetComponent<MeshRenderer>().material = green;
+        c.GetComponent<Item>().SetItemType(Units.Weapons.MachineGun);
     }
 	
 	// Update is called once per frame

@@ -24,9 +24,16 @@ public class BulletBuilder : MonoBehaviour {
                 obj.transform.eulerAngles = pRot;
                 break;
             case Units.Weapons.Shotgun:
-                bul.SetRecycleTime(0.1f);
+                bul.SetRecycleTime(0.15f);
                 bul.SetSpeed(7);
                 bul.SetPircePower(3);
+                obj.transform.position = pPos;
+                obj.transform.eulerAngles = pRot;
+                break;
+            case Units.Weapons.MachineGun:
+                bul.SetRecycleTime(1f);
+                bul.SetSpeed(6);
+                bul.SetPircePower(2);
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 break;
