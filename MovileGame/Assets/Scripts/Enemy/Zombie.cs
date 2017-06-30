@@ -30,6 +30,11 @@ public class Zombie : Enemy {
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Bullet") {
+            Vector3 dir = trans.position - PlayerManager.instance.PlayerPos();
+            Vector3 direc = dir / dir.magnitude;
+            //float angle = -Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            //Quaternion a = Quaternion.AngleAxis(angle, Vector3.up);
+            BloodManager.instance.CreateBlood(trans.position, direc);
             if (hp > 1) {
                 hp -= 1;
             }

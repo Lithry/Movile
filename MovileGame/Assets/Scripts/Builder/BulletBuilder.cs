@@ -33,7 +33,7 @@ public class BulletBuilder : MonoBehaviour {
             case Units.Weapons.MachineGun:
                 bul.SetRecycleTime(1f);
                 bul.SetSpeed(6);
-                bul.SetPircePower(2);
+                bul.SetPircePower(1);
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 break;

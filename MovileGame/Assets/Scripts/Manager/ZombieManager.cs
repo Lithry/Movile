@@ -15,7 +15,6 @@ public class ZombieManager : MonoBehaviour {
     void Start() {
         instance = this;
         enemies = new List<GameObject>();
-        respawnDelay = 0;
     }
 	
 	void Update () {
@@ -31,7 +30,7 @@ public class ZombieManager : MonoBehaviour {
                 int angle = (int)Random.Range(1.00f, 360.99f);
                 Vector3 respawnPos = new Vector3(Mathf.Cos(angle) * 3, 0.3f, Mathf.Sin(angle) * 3);
 
-                //enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.Zombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
+                enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.Zombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
                 respawn = 0;
                 respawnDelay = Random.Range(0.5f / PlayerManager.instance.GetPlussFromLv(), 2.0f / PlayerManager.instance.GetPlussFromLv());
             }
@@ -40,10 +39,18 @@ public class ZombieManager : MonoBehaviour {
                 int angle = (int)Random.Range(1.00f, 360.99f);
                 Vector3 respawnPos = new Vector3(Mathf.Cos(angle) * 3, 0.3f, Mathf.Sin(angle) * 3);
 
-                //enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.BigZombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
-                bossRespawnDelay = Random.Range(20f / PlayerManager.instance.GetPlussFromLv(), 60f / PlayerManager.instance.GetPlussFromLv());
+                enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.BigZombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
+                bossesRespawn = 0;
+                bossRespawnDelay = Random.Range(50f / PlayerManager.instance.GetPlussFromLv(), 200f / PlayerManager.instance.GetPlussFromLv());
             }
         }
+    }
+
+    public void Restart() {
+        respawn = 0;
+        respawnDelay = 0;
+        bossesRespawn = 0;
+        bossRespawnDelay = 20;
     }
 
     public void Recycle(PoolObject po, GameObject obj) {
