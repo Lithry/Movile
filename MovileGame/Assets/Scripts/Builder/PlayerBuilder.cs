@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBuilder : MonoBehaviour {
     static public PlayerBuilder instance = null;
+    public GameObject blood;
     private GameObject obj;
 
     void Awake() {
@@ -14,8 +15,8 @@ public class PlayerBuilder : MonoBehaviour {
         switch (type) {
             case Units.Player.Player:
                 obj = PlayerFactory.instance.Create(type);
-                PlayerController a = obj.AddComponent<PlayerController>();
-                a.speed = Units.playerSpeed;
+                PlayerController a = obj.GetComponent<PlayerController>();
+                a.SetSpeed(Units.playerSpeed);
                 obj.transform.position = pPos;
                 obj.transform.eulerAngles = pRot;
                 return obj;

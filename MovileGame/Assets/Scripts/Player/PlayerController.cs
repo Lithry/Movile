@@ -6,26 +6,39 @@ public class PlayerController : MonoBehaviour {
     private GunController gun;
     private Transform trans;
 
-    public float speed;
+    private float speed;
+    public ParticleSystem blood;
 
     void Start() {
         gun = GetComponentInChildren<GunController>();
         trans = transform;
+        blood.Stop();
     }
 
     void Update() {
         trans.Translate(InputManager.instance.Movement() * (speed * PlayerManager.instance.GetPlussFromLv()) * Time.deltaTime, Space.World);
         trans.rotation = InputManager.instance.LookAt();
 
-        if (InputManager.instance.Fire())
-            gun.FireGun();
+        gun.FireGun();
+    }
+
+    public void SetSpeed(float sSpeed) {
+        speed = sSpeed;
+    }
+
+
+    IEnumerator Dead()
+    {
+        blood.Play();
+        yield return new WaitForSeconds(2);
+        PlayerFactory.instance.Recycle(gameObject);
     }
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Enemy")
         {
             PlayerManager.instance.PlayerDied();
-            PlayerFactory.instance.Recycle(gameObject);
+            StartCoroutine(Dead());
         }
         if (collider.tag == "Item")
         {

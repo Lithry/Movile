@@ -10,11 +10,11 @@ public class BloodManager : MonoBehaviour {
         instance = this;
 	}
 	
-	public void CreateBlood(Vector3 pos, Vector3 dir) {
+	public void CreateBlood(Vector3 pos, Quaternion dir) {
         obj = PoolManager.instance.Spawn(Units.PoolType.Blood);
 
         obj.transform.position = pos;
-        obj.transform.eulerAngles = dir;
+        obj.transform.rotation = dir;
     }
 
     public void Recycle(PoolObject po, Units.PoolType type) {

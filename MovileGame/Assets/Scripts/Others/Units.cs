@@ -74,13 +74,13 @@ static public class Units {
     static public float[] weaponReloadTime =
         {   1.3f };
 
-    static public float playerSpeed = 1;
+    static public float playerSpeed = 0.75f;
 
-    static public float zombieSpeed = 0.6f;
+    static public float zombieSpeed = 0.4f;
     static public int zombiePoints = 5;
     static public int zombieExp = 25;
 
-    static public float zombieBossSpeed = 0.4f;
+    static public float zombieBossSpeed = 0.25f;
     static public int zombieBossPoints = 100;
     static public int zombieBossExp = 500;
 
