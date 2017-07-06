@@ -12,9 +12,7 @@ public class Zombie : Enemy {
 	}
 	
 	void Update () {
-        moveTo.x = PlayerManager.instance.PlayerPos().x;
-        moveTo.y = transform.position.y;
-        moveTo.z = PlayerManager.instance.PlayerPos().z;
+        moveTo.Set(PlayerManager.instance.PlayerPos().x, trans.position.y, PlayerManager.instance.PlayerPos().z);
         trans.LookAt(moveTo);
 
         trans.Translate(trans.forward * speed * Time.deltaTime, Space.World);
@@ -39,6 +37,7 @@ public class Zombie : Enemy {
                 ScoreManager.instance.AddScore(giveScore);
                 if (po == null)
                     po = GetComponent<PoolObject>();
+                if (Random.Range(0, 100) < 12) ItemManager.instance.MakeItem(trans.position);
                 ZombieManager.instance.Recycle(po, gameObject);
             }
         }

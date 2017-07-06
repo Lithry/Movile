@@ -28,6 +28,9 @@ public class Pool : MonoBehaviour {
             case Units.PoolType.Blood:
                 go = ZombieBloodFactory.instance.Create();
                 break;
+            case Units.PoolType.Items:
+                go = ItemFactory.instance.Create();
+                break;
         }
 
         PoolObject po = go.AddComponent<PoolObject>();

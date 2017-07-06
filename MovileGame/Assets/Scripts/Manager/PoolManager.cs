@@ -26,6 +26,8 @@ public class PoolManager : MonoBehaviour {
                 return pools[1].Spawn();
             case Units.PoolType.Blood:
                 return pools[2].Spawn();
+            case Units.PoolType.Items:
+                return pools[3].Spawn();
         }
 
         return null;
@@ -41,6 +43,9 @@ public class PoolManager : MonoBehaviour {
                 break;
             case Units.PoolType.Blood:
                 pools[2].Recycl(po);
+                break;
+            case Units.PoolType.Items:
+                pools[3].Recycl(po);
                 break;
             default:
                 break;

@@ -17,7 +17,8 @@ static public class Units {
     public enum PoolType {
         Bullet = 0,
         Zombie,
-        Blood
+        Blood,
+        Items
     }
 
     public enum Enemigos {
@@ -68,7 +69,8 @@ static public class Units {
     public enum Weapons {
         Pistol = 0,
         Shotgun,
-        MachineGun
+        MachineGun,
+        MAX,
     }
 
     static public float[] weaponReloadTime =
