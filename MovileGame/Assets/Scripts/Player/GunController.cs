@@ -69,5 +69,6 @@ public class GunController : MonoBehaviour {
         weapon.SetValues(Units.weapons[(int)obj].ammo, Units.weapons[(int)obj].shootRate, Units.weapons[(int)obj].shootSoeed, Units.weapons[(int)obj].dispersion, Units.weapons[(int)obj].reloadTime);
         CanvasManager.instance.SetAmmo(weapon.GetAmmo());
         CanvasManager.instance.SetCurrentAmmo(weapon.GetCurrentAmmo());
+        CanvasManager.instance.WeaponReloadTime(weapon.GetShootSpeed());
     }
 }

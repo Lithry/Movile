@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour {
 #elif UNITY_ANDROID
         input = new InputTouchscreen();
 #endif
+
     }
 
     public bool Fire() {
@@ -28,5 +29,9 @@ public class InputManager : MonoBehaviour {
 
     public Quaternion LookAt() {
         return (PlayerManager.instance.PlayerAlive()) ? input.LookAt() : new Quaternion(0, 0.707f, 0, 0.707f);
+    }
+
+    public void Clean() {
+        input.Clean();
     }
 }

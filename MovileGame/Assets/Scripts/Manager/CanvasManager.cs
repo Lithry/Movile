@@ -70,6 +70,7 @@ public class CanvasManager : MonoBehaviour {
         PlayerManager.instance.ResetLv();
         PlayerManager.instance.NewPlayer();
         ZombieManager.instance.Restart();
+        InputManager.instance.Clean();
     }
 
     public void Quit() {

@@ -64,10 +64,20 @@ public class InputTouchscreen : IInput {
     public bool Fire() {
         foreach (Touch touch in Input.touches) {
             if (Camera.main.ScreenToViewportPoint(touch.position).x > 0.5) {
-                if (longToShoot > 250)
+                if (longToShoot > 110)
                     return true;
             }
         }
         return false;
+    }
+
+    public void Clean() {
+        lookAt.Set(0, 0, 0);
+        actualLookAt.Set(0, 0.707f, 0, 0.707f);
+        angle = 0;
+        beginTouchPositionToMove.Set(0, 0, 0);
+        actualTouchPositionToMove.Set(0, 0, 0);
+        beginTouchPositionToLook.Set(0, 0, 0);
+        actualTouchPositionToLook.Set(0, 0, 0);
     }
 }

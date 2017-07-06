@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class InputKeyboard : IInput {
     private Vector3 lookAt;
-    private float angle;
     private Vector3 direction;
+    private float angle;
 
     public Vector3 Movement() {
-        direction.x = Input.GetAxisRaw("Horizontal");
-        direction.y = 0;
-        direction.z = Input.GetAxisRaw("Vertical");
+        direction.Set(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         if (direction.magnitude > 1)
             return Vector3.Normalize(direction);
@@ -26,5 +24,11 @@ public class InputKeyboard : IInput {
 
     public bool Fire() {
         return Input.GetButton("Fire1") ? true : false;
+    }
+
+    public void Clean() {
+        lookAt.Set(0, 0, 0);
+        direction.Set(0, 0, 0);
+        angle = 0;
     }
 }

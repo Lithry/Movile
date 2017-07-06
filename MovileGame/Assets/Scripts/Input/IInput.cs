@@ -6,4 +6,6 @@ interface IInput {
     Vector3 Movement();
     Quaternion LookAt();
     bool Fire();
+
+    void Clean();
 }
