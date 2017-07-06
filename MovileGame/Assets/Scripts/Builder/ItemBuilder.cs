@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemBuilder : MonoBehaviour {
     static public ItemBuilder instance = null;
     private Item it;
+    private Vector3 iPos;
     private GameObject obj;
     private MeshRenderer mesh;
     public Material pistolMaterial;
@@ -24,16 +25,22 @@ public class ItemBuilder : MonoBehaviour {
         switch (wep)
         {
             case Units.Weapons.Pistol:
+                it.SetPoints(30);
                 mesh.material = pistolMaterial;
                 break;
             case Units.Weapons.Shotgun:
+                it.SetPoints(50);
                 mesh.material = ShotgunMaterial;
                 break;
             case Units.Weapons.MachineGun:
+                it.SetPoints(60);
                 mesh.material = machineGunMaterial;
                 break;
         }
 
-        obj.transform.position = pPos;
+        iPos = pPos;
+        iPos.y = 0.15f;
+        obj.transform.position = iPos;
+        obj.transform.eulerAngles = new Vector3(0, 180, 0);
     }
 }

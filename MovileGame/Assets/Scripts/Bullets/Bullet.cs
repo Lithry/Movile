@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     private PoolObject po;
     private float speed;
+    private int dmg;
     private int pirce;
     private float timerForRecycle;
     private float timer;

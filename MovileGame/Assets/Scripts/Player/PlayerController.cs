@@ -42,7 +42,9 @@ public class PlayerController : MonoBehaviour {
         }
         if (collider.tag == "Item")
         {
-            gun.ChangeWeapon(collider.GetComponent<Item>().GetItemType());
+            Item it = collider.GetComponent<Item>();
+            gun.ChangeWeapon(it.GetItemType());
+            ScoreManager.instance.AddScore(it.GetPoint());
             ItemManager.instance.Recycle(collider.gameObject);
         }
     }

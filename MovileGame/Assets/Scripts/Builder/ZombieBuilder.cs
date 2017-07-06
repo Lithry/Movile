@@ -17,7 +17,7 @@ public class ZombieBuilder : MonoBehaviour {
 
         switch (type) {
             case Units.Enemigos.Zombie:
-                z.SetHP(1);
+                z.SetHP(4);
                 z.SetSpeed(Units.zombieSpeed);
                 z.GiveScore(Units.zombiePoints);
                 z.GiveExp(Units.zombieExp);
@@ -27,7 +27,7 @@ public class ZombieBuilder : MonoBehaviour {
                 obj.transform.eulerAngles = pRot;
                 return obj;
             case Units.Enemigos.BigZombie:
-                z.SetHP(20);
+                z.SetHP(35);
                 z.SetSpeed(Units.zombieBossSpeed);
                 z.GiveScore(Units.zombieBossPoints);
                 z.GiveExp(Units.zombieBossExp);

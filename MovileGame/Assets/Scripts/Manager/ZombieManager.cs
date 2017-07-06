@@ -41,7 +41,7 @@ public class ZombieManager : MonoBehaviour {
 
                 enemies.Add(ZombieBuilder.instance.Build(Units.Enemigos.BigZombie, respawnPos + PlayerManager.instance.PlayerPos(), new Vector3(0, 0, 0)));
                 bossesRespawn = 0;
-                bossRespawnDelay = Random.Range(50f / PlayerManager.instance.GetPlussFromLv(), 200f / PlayerManager.instance.GetPlussFromLv());
+                bossRespawnDelay = Random.Range(20f / PlayerManager.instance.GetPlussFromLv(), 100f / PlayerManager.instance.GetPlussFromLv());
             }
         }
     }

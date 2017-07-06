@@ -6,6 +6,7 @@ public class Item : MonoBehaviour {
     private Units.Weapons type;
     private PoolObject po;
     private float timer;
+    private int points;
 
     private void OnEnable() {
         timer = 0;
@@ -27,6 +28,14 @@ public class Item : MonoBehaviour {
 
     public Units.Weapons GetItemType() {
         return type;
+    }
+
+    public void SetPoints(int p) {
+        points = p;
+    }
+
+    public int GetPoint() {
+        return points;
     }
 
     public void Recycl() {
